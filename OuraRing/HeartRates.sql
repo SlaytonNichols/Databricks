@@ -32,4 +32,8 @@ AS
     h.source,
     to_timestamp(h.timestamp) as timestamp
   FROM LIVE.heartrates_cleaned h
-  JOIN bronze.date d on d.Date = h.timestamp
+--   JOIN bronze.date d on d.Date = h.timestamp
+
+-- COMMAND ----------
+
+
