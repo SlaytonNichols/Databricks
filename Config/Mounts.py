@@ -6,8 +6,12 @@ configs = {"fs.azure.account.auth.type": "OAuth",
        "fs.azure.account.oauth2.client.secret": client_secret,
        "fs.azure.account.oauth2.client.endpoint": "https://login.microsoftonline.com/0c772262-30c5-44a5-a3de-0f1a95207e30/oauth2/token",
        "fs.azure.createRemoteFileSystemDuringInitialization": "true"}
+if not any(mount.mountPoint == '/mnt' for mount in dbutils.fs.mounts()):
+    dbutils.fs.mount(
+    source = "abfss://databricks@snadls.dfs.core.windows.net",
+    mount_point = "/mnt",
+    extra_configs = configs)
 
-dbutils.fs.mount(
-source = "abfss://databricks@snadls.dfs.core.windows.net",
-mount_point = "/mnt",
-extra_configs = configs)
+# COMMAND ----------
+
+
