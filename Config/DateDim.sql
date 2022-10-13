@@ -1,15 +1,5 @@
 -- Databricks notebook source
 -- MAGIC %python
--- MAGIC jsonDf = spark.read.option("multiline", "true").json("/mnt/config/dbo_DimDate.json")
--- MAGIC display(jsonDf)
--- MAGIC jsonDf.write.mode("overwrite").format("delta").saveAsTable("bronze.date")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC select *
--- MAGIC from bronze.date
-
--- COMMAND ----------
-
-
+-- MAGIC if not spark._jsparkSession.catalog().tableExists("bronze.date"):
+-- MAGIC     jsonDf = spark.read.option("multiline", "true").json("/mnt/config/dbo_DimDate.json")
+-- MAGIC     jsonDf.write.mode("overwrite").format("delta").saveAsTable("bronze.date")
