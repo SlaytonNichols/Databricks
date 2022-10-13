@@ -23,4 +23,13 @@ AS
 
 -- COMMAND ----------
 
-
+-- DBTITLE 1,Create Gold Heart Rates Table
+CREATE OR REFRESH LIVE TABLE heartrates_curated
+LOCATION "/mnt/gold/tables/heartrates_curated"
+AS
+  SELECT 
+    h.bpm,
+    h.source,
+    to_timestamp(h.timestamp) as timestamp
+  FROM LIVE.heartrates_cleaned h
+  JOIN bronze.date d on d.Date = h.timestamp

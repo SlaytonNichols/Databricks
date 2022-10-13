@@ -9,3 +9,7 @@
 -- MAGIC %sql
 -- MAGIC select *
 -- MAGIC from bronze.date
+
+-- COMMAND ----------
+
+
