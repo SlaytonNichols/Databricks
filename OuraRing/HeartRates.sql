@@ -30,7 +30,7 @@ AS
   SELECT 
     h.bpm,
     h.source,
-    to_timestamp(h.timestamp) as timestamp
+    h.timestamp
   FROM LIVE.heartrates_cleaned h
 --   JOIN bronze.date d on d.Date = h.timestamp
 
