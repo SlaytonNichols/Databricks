@@ -1,7 +1,7 @@
 -- Databricks notebook source
 -- DBTITLE 1,Create Bronze Heart Rates Table
 CREATE OR REFRESH STREAMING LIVE TABLE heartrates_raw
-LOCATION "/mnt/bronze/tables/heartrates_raw"
+LOCATION "/mnt/bronze/heartrates_raw"
 AS SELECT *
   FROM cloud_files(
     "/mnt/landing/ouraring/heartrates",
@@ -13,7 +13,7 @@ AS SELECT *
 
 -- DBTITLE 1,Create Silver Heart Rates Table
 CREATE OR REFRESH LIVE TABLE heartrates_cleaned
-LOCATION "/mnt/silver/tables/heartrates_cleaned"
+LOCATION "/mnt/silver/heartrates_cleaned"
 AS
   SELECT 
     h.bpm,
@@ -25,7 +25,7 @@ AS
 
 -- DBTITLE 1,Create Gold Heart Rates Table
 CREATE OR REFRESH LIVE TABLE heartrates_curated
-LOCATION "/mnt/gold/tables/heartrates_curated"
+LOCATION "/mnt/gold/heartrates_curated"
 AS
   SELECT 
     h.bpm,
