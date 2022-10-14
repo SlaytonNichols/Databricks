@@ -10,8 +10,4 @@ describe schema bronze
 
 -- COMMAND ----------
 
-
-
--- COMMAND ----------
-
-
+CREATE TABLE IF NOT EXISTS bronze.heartrates_raw USING DELTA LOCATION '/mnt/bronze/heartrates_raw'

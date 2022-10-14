@@ -14,4 +14,8 @@ from ouraring.heartrates_curated
 
 -- COMMAND ----------
 
+SHOW TABLES FROM silver
+
+-- COMMAND ----------
+
 

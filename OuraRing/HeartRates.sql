@@ -33,7 +33,3 @@ AS
     h.timestamp
   FROM LIVE.heartrates_cleaned h
 --   JOIN bronze.date d on d.Date = h.timestamp
-
--- COMMAND ----------
-
-

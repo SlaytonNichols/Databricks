@@ -6,4 +6,8 @@ LOCATION "/mnt/silver"
 
 -- COMMAND ----------
 
-describe schema silver
+CREATE TABLE IF NOT EXISTS silver.heartrates_cleaned USING DELTA LOCATION '/mnt/bronze/heartrates_cleaned'
+
+-- COMMAND ----------
+
+
