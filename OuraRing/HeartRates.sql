@@ -27,12 +27,14 @@ JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
 -- COMMAND ----------
 
 -- DBTITLE 1,Create Gold Heart Rates Table
--- CREATE OR REFRESH LIVE TABLE heartrates_curated
--- LOCATION "/mnt/gold/heartrates_curated"
--- AS
---   SELECT 
---     h.bpm,
---     h.source,
---     h.dateKey,
---     h.timeKey
---   FROM LIVE.heartrates_cleaned h
+CREATE OR REFRESH LIVE TABLE heartrates_curated
+LOCATION "/mnt/gold/heartrates_curated"
+AS
+  SELECT *
+  FROM LIVE.heartrates_cleaned h
+  JOIN silver.date d on d.dateKey = h.dateKey
+  JOIN bronze.time t on t.TimeKey = h.timeKey
+
+-- COMMAND ----------
+
+
