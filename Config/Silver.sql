@@ -55,17 +55,4 @@ FROM bronze.date d
 
 -- COMMAND ----------
 
--- MAGIC %python
--- MAGIC dbutils.fs.rm('/mnt/silver/date', True)
-
--- COMMAND ----------
-
-drop table silver.date
-
--- COMMAND ----------
-
-select * from silver.date
-
--- COMMAND ----------
-
 

@@ -6,8 +6,7 @@ AS SELECT *
   FROM cloud_files(
     "/mnt/landing/ouraring/heartrates",
     "json",
-    map("schema", "bpm INT, source STRING, timestamp STRING"),
-    map("mergeSchema", "true")
+    map("schema", "bpm INT, source STRING, timestamp STRING")
   );
 
 -- COMMAND ----------
@@ -21,19 +20,19 @@ SELECT
   h.source,  
   d.dateKey,  
   t.TimeKey as timeKey
-FROM LIVE.heartrates_cleaned h
+FROM LIVE.heartrates_raw h
 JOIN silver.date d on to_date(h.timestamp) = d.date
 JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
 
 -- COMMAND ----------
 
 -- DBTITLE 1,Create Gold Heart Rates Table
-CREATE OR REFRESH LIVE TABLE heartrates_curated
-LOCATION "/mnt/gold/heartrates_curated"
-AS
-  SELECT 
-    h.bpm,
-    h.source,
-    h.dateKey,
-    h.timeKey
-  FROM LIVE.heartrates_cleaned h
+-- CREATE OR REFRESH LIVE TABLE heartrates_curated
+-- LOCATION "/mnt/gold/heartrates_curated"
+-- AS
+--   SELECT 
+--     h.bpm,
+--     h.source,
+--     h.dateKey,
+--     h.timeKey
+--   FROM LIVE.heartrates_cleaned h
