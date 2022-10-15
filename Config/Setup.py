@@ -15,8 +15,4 @@
 
 # COMMAND ----------
 
-# MAGIC %run ./DateDim
-
-# COMMAND ----------
-
 
