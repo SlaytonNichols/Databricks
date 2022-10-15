@@ -32,8 +32,8 @@ LOCATION "/mnt/gold/heartrates_curated"
 AS
 SELECT *
   FROM LIVE.heartrates_cleaned h
-JOIN silver.date d on h.date = d.date
-JOIN bronze.time t on h.time = t.FullTime
+JOIN silver.date d on h.heartrateDate = d.date
+JOIN bronze.time t on h.heartrateTime = t.FullTime
 
 -- COMMAND ----------
 
