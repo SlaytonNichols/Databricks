@@ -18,8 +18,8 @@ AS
 SELECT 
   h.bpm,
   h.source,  
-  to_date(h.timestamp) as `date`,
-  date_format(h.timestamp, "HH:mm:ss") as `time`
+  to_date(h.timestamp) as heartrateDate,
+  date_format(h.timestamp, "HH:mm:ss") as heartrateTime
 FROM LIVE.heartrates_raw h
 JOIN silver.date d on to_date(h.timestamp) = d.date
 JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
