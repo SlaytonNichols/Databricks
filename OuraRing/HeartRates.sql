@@ -18,8 +18,8 @@ AS
 SELECT 
   h.bpm,
   h.source,  
-  d.dateKey,  
-  t.TimeKey as timeKey
+  to_date(h.timestamp) as `date`,
+  date_format(h.timestamp, "HH:mm:ss") as `time`
 FROM LIVE.heartrates_raw h
 JOIN silver.date d on to_date(h.timestamp) = d.date
 JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
@@ -30,10 +30,10 @@ JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
 CREATE OR REFRESH LIVE TABLE heartrates_curated
 LOCATION "/mnt/gold/heartrates_curated"
 AS
-  SELECT *
+SELECT *
   FROM LIVE.heartrates_cleaned h
-  JOIN silver.date d on d.dateKey = h.dateKey
-  JOIN bronze.time t on t.TimeKey = h.timeKey
+JOIN silver.date d on h.date = d.date
+JOIN bronze.time t on h.time = t.FullTime
 
 -- COMMAND ----------
 

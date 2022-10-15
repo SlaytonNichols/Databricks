@@ -11,9 +11,7 @@ from ouraring.heartrates_cleaned
 
 -- DBTITLE 1,Draft Gold Table Scratch Pad
 select *
-from ouraring.heartrates_cleaned h
-JOIN silver.date d on d.dateKey = h.dateKey
-JOIN bronze.time t on t.TimeKey = h.timeKey
+from ouraring.heartrates_curated
 
 -- COMMAND ----------
 
