@@ -37,13 +37,23 @@ JOIN bronze.time t on h.heartrateTime = t.FullTime
 
 -- COMMAND ----------
 
--- DBTITLE 1,Create Gold Heart Rates Table
+-- DBTITLE 1,Create Gold Avg Heart Rate By Is Weekday Table
 CREATE OR REFRESH LIVE TABLE avg_heartrate_by_isweekday
 LOCATION "/mnt/gold/avg_heartrate_by_isweekday"
 AS
 SELECT avg(h.bpm) as avg_bpm, h.date, h.isWeekDay
   FROM LIVE.heartrates_curated h
 GROUP BY h.date, h.isWeekDay
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Create Gold Avg Heart Rate By Am Pm
+CREATE OR REFRESH LIVE TABLE avg_heartrate_by_am_pm
+LOCATION "/mnt/gold/avg_heartrate_by_am_pm"
+AS
+SELECT avg(h.bpm) as avg_bpm, h.date, h.AmPmString
+  FROM LIVE.heartrates_curated h
+GROUP BY h.date, h.AmPmString
 
 -- COMMAND ----------
 
