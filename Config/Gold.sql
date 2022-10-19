@@ -11,4 +11,22 @@ CREATE TABLE IF NOT EXISTS gold.heartrates_curated USING DELTA LOCATION '/mnt/br
 
 -- COMMAND ----------
 
+CREATE VIEW IF NOT EXISTS avg_heartrate_by_am_pm
+AS
+SELECT avg(h.bpm) as avg_bpm, h.date, h.AmPmString
+  FROM ouraring.heartrates_curated h
+GROUP BY h.date, h.AmPmString
+ORDER BY h.date DESC
+
+-- COMMAND ----------
+
+CREATE VIEW IF NOT EXISTS avg_heartrate_by_is_weekday
+AS
+SELECT avg(h.bpm) as avg_bpm, h.date, h.isWeekDay
+  FROM ouraring.heartrates_curated h
+GROUP BY h.date, h.isWeekDay
+ORDER BY h.date DESC
+
+-- COMMAND ----------
+
 
