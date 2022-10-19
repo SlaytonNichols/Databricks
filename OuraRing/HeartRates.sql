@@ -26,22 +26,16 @@ JOIN bronze.time t on date_format(h.timestamp, "HH:mm:ss") = t.FullTime
 
 -- COMMAND ----------
 
--- DBTITLE 1,Create Gold Avg Heart Rate By Is Weekday Table
-CREATE OR REFRESH LIVE TABLE avg_heartrate_by_isweekday
-LOCATION "/mnt/gold/avg_heartrate_by_isweekday"
+-- DBTITLE 1,Create Gold Heart Rates Table
+CREATE OR REFRESH LIVE TABLE heartrates_curated
+LOCATION "/mnt/gold/heartrates_curated"
 AS
-SELECT avg(h.bpm) as avg_bpm, h.date, h.isWeekDay
-    FROM LIVE.heartrates_cleaned h
-JOIN silver.date d on h.heartrateDate = d.date
-JOIN bronze.time t on h.heartrateTime = t.FullTime
-
--- COMMAND ----------
-
--- DBTITLE 1,Create Gold Avg Heart Rate By Am Pm
-CREATE OR REFRESH LIVE TABLE avg_heartrate_by_am_pm
-LOCATION "/mnt/gold/avg_heartrate_by_am_pm"
-AS
-SELECT avg(h.bpm) as avg_bpm, h.date, h.AmPmString
+SELECT 
+  h.bpm,
+  d.date, 
+  d.isWeekDay,
+  t.AmPmString
+FROM LIVE.heartrates_cleaned h
 JOIN silver.date d on h.heartrateDate = d.date
 JOIN bronze.time t on h.heartrateTime = t.FullTime
 
