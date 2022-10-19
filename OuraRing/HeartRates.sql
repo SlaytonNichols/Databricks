@@ -33,9 +33,9 @@ AS
 SELECT 
   h.bpm,
   h.date, 
-  h.isWeekDay,
-  h.date, 
-  h.AmPmString
+  d.isWeekDay,
+  d.date, 
+  t.AmPmString
 FROM LIVE.heartrates_cleaned h
 JOIN silver.date d on h.heartrateDate = d.date
 JOIN bronze.time t on h.heartrateTime = t.FullTime
