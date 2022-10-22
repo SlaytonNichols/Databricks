@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS gold.heartrates_curated USING DELTA LOCATION '/mnt/go
 CREATE VIEW IF NOT EXISTS avg_heartrate_by_am_pm
 AS
 SELECT avg(h.bpm) as avg_bpm, h.date, h.AmPmString
-  FROM ouraring.heartrates_curated h
+  FROM gold.heartrates_curated h
 GROUP BY h.date, h.AmPmString
 ORDER BY h.date DESC
 
@@ -27,7 +27,7 @@ ORDER BY h.date DESC
 CREATE VIEW IF NOT EXISTS avg_heartrate_by_is_weekday
 AS
 SELECT avg(h.bpm) as avg_bpm, h.date, h.isWeekDay
-  FROM ouraring.heartrates_curated h
+  FROM gold.heartrates_curated h
 GROUP BY h.date, h.isWeekDay
 ORDER BY h.date DESC
 
