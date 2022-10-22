@@ -6,8 +6,12 @@ LOCATION "/mnt/gold"
 
 -- COMMAND ----------
 
+USE gold;
+
+-- COMMAND ----------
+
 -- DBTITLE 1,Create Gold HeartRatesCurated Table
-CREATE TABLE IF NOT EXISTS gold.heartrates_curated USING DELTA LOCATION '/mnt/bronze/heartrates_curated'
+CREATE TABLE IF NOT EXISTS gold.heartrates_curated USING DELTA LOCATION '/mnt/gold/heartrates_curated'
 
 -- COMMAND ----------
 

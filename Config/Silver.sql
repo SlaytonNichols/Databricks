@@ -7,7 +7,7 @@ LOCATION "/mnt/silver"
 -- COMMAND ----------
 
 -- DBTITLE 1,Create Gold HeartRatesCleaned Table
-CREATE TABLE IF NOT EXISTS silver.heartrates_cleaned USING DELTA LOCATION '/mnt/bronze/heartrates_cleaned'
+CREATE TABLE IF NOT EXISTS silver.heartrates_cleaned USING DELTA LOCATION '/mnt/silver/heartrates_cleaned'
 
 -- COMMAND ----------
 
